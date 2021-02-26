@@ -1,12 +1,12 @@
-# Placeholder - URL shortener 
+# Placeholder - URL shortener (https://cutt.ly/bkC50XI)
 
 This is a template project for "Software testing" course labs. Use it to create your own repo and
 fulfill/rewrite this document (at least, replace everything in `{...}`).
 
 ## Students group
 
-- Романченко xx.hist.xx@gmail.com
-- Олійник sergioliynik@gmail.com
+- Романченко Владислав xx.hist.xx@gmail.com
+- Олійник Сергій sergioliynik@gmail.com
 
 ## Design document
 
