@@ -1,4 +1,4 @@
-# Placeholder - URL shortener {🧪}
+# Placeholder - URL shortener 
 
 This is a template project for "Software testing" course labs. Use it to create your own repo and
 fulfill/rewrite this document (at least, replace everything in `{...}`).
