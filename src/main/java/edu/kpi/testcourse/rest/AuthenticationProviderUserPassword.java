@@ -1,5 +1,6 @@
 package edu.kpi.testcourse.rest;
 
+import edu.kpi.testcourse.logic.Logic;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.security.authentication.AuthenticationException;
@@ -11,6 +12,7 @@ import io.micronaut.security.authentication.UserDetails;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import java.util.ArrayList;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.reactivestreams.Publisher;
 
@@ -21,18 +23,24 @@ import org.reactivestreams.Publisher;
 @Singleton
 public class AuthenticationProviderUserPassword implements AuthenticationProvider {
 
+  private final Logic logic;
+
+  @Inject
+  public AuthenticationProviderUserPassword(Logic logic) {
+    this.logic = logic;
+  }
+
   @Override
   public Publisher<AuthenticationResponse> authenticate(
       @Nullable HttpRequest<?> httpRequest,
       AuthenticationRequest<?, ?> authenticationRequest
   ) {
-    // TODO Here you need to implement an actual authentication (ensure that the user is registered
-    //  and password is OK)
     return Flowable.create(emitter -> {
-      if (authenticationRequest.getIdentity().equals("sherlock")
-          && authenticationRequest.getSecret().equals("password")) {
+      String email = (String) authenticationRequest.getIdentity();
+      String password = (String) authenticationRequest.getSecret();
+      if (logic.isUserValid(email, password)) {
         emitter
-          .onNext(new UserDetails((String) authenticationRequest.getIdentity(), new ArrayList<>()));
+          .onNext(new UserDetails(email, new ArrayList<>()));
         emitter.onComplete();
       } else {
         emitter.onError(new AuthenticationException(new AuthenticationFailed()));
