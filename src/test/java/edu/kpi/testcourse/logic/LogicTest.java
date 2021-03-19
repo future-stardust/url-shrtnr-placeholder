@@ -42,7 +42,7 @@ class LogicTest {
   void shouldNotAllowUserCreationIfEmailIsUsed() {
     // GIVEN
     UserRepositoryFakeImpl users = new UserRepositoryFakeImpl();
-    users.createUser(new User("aaa@bbb.com", "hash", new ArrayList<String>()));
+    users.createUser(new User("aaa@bbb.com", "hash"));
     Logic logic = createLogic(users);
 
     assertThatThrownBy(() -> {

@@ -6,17 +6,16 @@ import edu.kpi.testcourse.storage.UrlRepository;
 import edu.kpi.testcourse.storage.UrlRepository.AliasAlreadyExist;
 import edu.kpi.testcourse.storage.UserRepository;
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Business logic of the URL shortener application.
  */
 public class Logic {
+
   private final UserRepository users;
   private final UrlRepository urls;
   private final HashUtils hashUtils;
-  
+
 
   /**
    * Creates an instance.
@@ -30,7 +29,7 @@ public class Logic {
   /**
    * Create a new user.
    *
-   * @param email users email
+   * @param email    users email
    * @param password users password
    * @throws UserIsAlreadyCreated is thrown if user is already created
    */
@@ -38,14 +37,14 @@ public class Logic {
     if (users.findUser(email) != null) {
       throw new UserIsAlreadyCreated();
     } else {
-      users.createUser(new User(email, hashUtils.generateHash(password), new ArrayList<String>()));
+      users.createUser(new User(email, hashUtils.generateHash(password)));
     }
   }
 
   /**
    * Gives an answer if user is registered and password is correct.
    *
-   * @param email a users email
+   * @param email    a users email
    * @param password a users password
    * @return if user is registered and password is correct
    */
@@ -62,9 +61,8 @@ public class Logic {
    * Create a new URL alias (shortened version).
    *
    * @param email an email of a user that creates the alias
-   * @param url a full URL
+   * @param url   a full URL
    * @param alias a proposed alias
-   *
    * @return a shortened URL
    */
   public String createNewAlias(String email, String url, String alias) throws AliasAlreadyExist {
@@ -115,32 +113,9 @@ public class Logic {
    * Error for situation when we are trying to register already registered user.
    */
   public static class UserIsAlreadyCreated extends Throwable {
+
     public UserIsAlreadyCreated() {
       super("User with such email is already created");
     }
   }
-
-  /**
-   * Delete a URL alias.
-   */
-  public void deleteAlias(String email, String alias) throws AliasAlreadyExist {
-    urls.deleteUrlAlias(email, alias);
-    users.deleteUrlAlias(email, alias);
-  }
-
-  /**
-   * Get all aliases for user.
-   */
-  public List<UrlAlias> showUserAlias(String email) throws AliasAlreadyExist {
-    List<String> userAlias = users.getAllAliasesForUser(email);
-    if (userAlias != null) {
-      List<UrlAlias> urls = new ArrayList<>();
-      for(String url: userAlias){
-        urls.add(this.urls.findUrlAlias(url));
-      }
-      return urls;
-    }
-    return null;
-  }
-
 }
