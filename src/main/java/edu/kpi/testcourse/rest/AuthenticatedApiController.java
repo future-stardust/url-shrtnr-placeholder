@@ -2,13 +2,13 @@ package edu.kpi.testcourse.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.kpi.testcourse.entities.UrlAlias;
 import edu.kpi.testcourse.logic.Logic;
 import edu.kpi.testcourse.rest.models.ErrorResponse;
 import edu.kpi.testcourse.rest.models.UrlShortenRequest;
 import edu.kpi.testcourse.rest.models.UrlShortenResponse;
 import edu.kpi.testcourse.serialization.JsonTool;
 import edu.kpi.testcourse.storage.UrlRepository.AliasAlreadyExist;
-import edu.kpi.testcourse.entities.UrlAlias;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
