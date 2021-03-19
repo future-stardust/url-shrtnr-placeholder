@@ -8,6 +8,7 @@ import edu.kpi.testcourse.rest.models.UrlShortenRequest;
 import edu.kpi.testcourse.rest.models.UrlShortenResponse;
 import edu.kpi.testcourse.serialization.JsonTool;
 import edu.kpi.testcourse.storage.UrlRepository.AliasAlreadyExist;
+import edu.kpi.testcourse.entities.UrlAlias;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
@@ -19,7 +20,7 @@ import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 import java.security.Principal;
 import javax.inject.Inject;
-import edu.kpi.testcourse.entities.UrlAlias;
+
 
 /**
  * API controller for all REST API endpoints that require authentication.

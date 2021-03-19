@@ -27,7 +27,7 @@ public interface UrlRepository {
    *
    * @throws RuntimeException if the repository does not contain a URL alias with this short name.
    */
-  void deleteUrlAlias(String email, String alias) throws PermissionDenied;
+  void deleteUrlAlias(String alias) throws PermissionDenied;
 
   /**
    * Finds all URLs that belong to the user with the given email.
