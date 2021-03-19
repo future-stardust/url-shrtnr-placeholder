@@ -6,6 +6,7 @@ import edu.kpi.testcourse.storage.UrlRepository.AliasAlreadyExist;
 import edu.kpi.testcourse.storage.UrlRepositoryFakeImpl;
 import edu.kpi.testcourse.storage.UserRepositoryFakeImpl;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -41,7 +42,7 @@ class LogicTest {
   void shouldNotAllowUserCreationIfEmailIsUsed() {
     // GIVEN
     UserRepositoryFakeImpl users = new UserRepositoryFakeImpl();
-    users.createUser(new User("aaa@bbb.com", "hash"));
+    users.createUser(new User("aaa@bbb.com", "hash", new ArrayList<String>()));
     Logic logic = createLogic(users);
 
     assertThatThrownBy(() -> {

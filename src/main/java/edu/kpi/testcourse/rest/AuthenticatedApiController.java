@@ -19,6 +19,7 @@ import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 import java.security.Principal;
 import javax.inject.Inject;
+import edu.kpi.testcourse.entities.UrlAlias;
 
 /**
  * API controller for all REST API endpoints that require authentication.
